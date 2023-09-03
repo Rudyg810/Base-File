@@ -1,14 +1,15 @@
 import "./Navbar.css";
 import React, { useRef } from "react";
-//import {GiShoppingBag} from "react-icons/gi"
+import { AuthProvider, useAuth } from "../contextapi/auth";
+import { NavLink } from "react-router-dom";
+// import {GiShoppingBag} from "react-icons/gi"
 
-const Header = () => {
+const Navbar = () => {
 //add before any element <GiShoppingBag />
+const [auth, setAuth]= useAuth();
 
- 
 
-{/*
-const handleDropdownClick = () => {
+{/*const handleDropdownClick = () => {
   const dropdownElement = dropdownRef.current;
   if (dropdownElement) {
     // Toggle the "show" class to show/hide the dropdown menu
@@ -24,7 +25,7 @@ const handellogout = () => {
     token:""
   })
   localStorage.removeItem("auth")
-  toast.success("Logout Successfully")
+  console.log("Logout Successfully")
 }
 
     return (
@@ -36,6 +37,7 @@ const handellogout = () => {
             <a className="navbar-brand" href="/">
               Aescify Store
             </a>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -43,16 +45,15 @@ const handellogout = () => {
               data-bs-target="#navbarNav"
               aria-controls="navbarNav"
               aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
+              aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
+
+
+
+
             <div className="collapse navbar-collapse " id="navbarNav">
               <ul className="navbar-nav ms-auto">
-
-  
-  
-  
                   {
                     !auth.user ? (<>
                     <li className="nav-item mt-2">
@@ -69,14 +70,12 @@ const handellogout = () => {
       
   
   <div class="dropdown">
-    <button onClick={{/*handleDropdownClick*/}} class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" style={{color:"#OD52BD"}}>
+    <button  class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" style={{color:"#OD52BD"}}>
     {auth?.user?.name}
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
   
-   {/* <li><a class="dropdown-item mt-1 " href={`/Dashboard/${auth?.user?.role ===1 ? "admin" : ""    }`} >DashBoard</a></li>
-          <li><a class="dropdown-item mt-2 " href="/Dashboard/user/cart">Cart({cart.length})</a></li>
-*/}
+
       <li><a class="dropdown-item mt-2" onClick={handellogout} href="/login">Logout</a></li>
     
     </ul>
@@ -105,5 +104,5 @@ const handellogout = () => {
     );
   };
   
-  export default Header;
+  export default Navbar;
   
